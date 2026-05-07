@@ -2,15 +2,14 @@ import { defineCollection, z } from 'astro:content';
 
 const galleryCollection = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({ // <-- Añade { image } aquí
     title: z.string(),
-    image: z.string(),
+    image: image(), // <-- Cambia z.string() por image()
     description: z.string(),
     date: z.string().optional(),
   }),
 });
 
-// src/content/config.ts
 const meetingsCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -18,10 +17,11 @@ const meetingsCollection = defineCollection({
     date: z.string(),
     location: z.string(),
     description: z.string(),
-    category: z.string(), // Ensure this matches what you put in the .md
+    category: z.string(),
   }),
 });
+
 export const collections = {
   'gallery': galleryCollection,
-  'meetings': meetingsCollection, // Register the new collection
+  'meetings': meetingsCollection,
 };

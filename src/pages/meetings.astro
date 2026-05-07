@@ -15,7 +15,7 @@ const topEvents = allMeetings.filter(item =>
   !['convivencia', 'actividad'].includes(item.data.category.toLowerCase())
 );
 
-const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI";
+const WHATSAPP_LINK = "https://chat.whatsapp.com/CBaJUKxwJNsChJoEbya0Mh";
 ---
 
 <Layout title="Eventos - Secta Banditos">
@@ -32,7 +32,6 @@ const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI";
         <div class="flex items-center gap-4 mb-6">
           <div class="h-[1px] w-12 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
           <span class="text-clancy-red font-black tracking-[0.5em] uppercase text-[10px] md:text-xs">
-            Log de Incursiones
           </span>
         </div>
         <h1 class="text-7xl md:text-9xl font-heading leading-[0.8] uppercase tracking-tighter">
@@ -72,8 +71,11 @@ const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI";
              <div class="absolute inset-0 bg-gradient-to-b from-clancy-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
              <p class="text-clancy-white/30 uppercase tracking-[0.5em] font-black text-xs md:text-sm mb-4">Dema está en silencio</p>
              <p class="text-clancy-white/20 text-xs max-w-md mx-auto leading-relaxed font-light italic">
-               "No hay transmisiones oficiales. Cualquier lanzamiento o incursión será notificada por esta frecuencia."
+               No hay anuncios o eventos importantes proximos de TØP. Si surge algo, lo notificaremos por este medio.
              </p>
+	     <p class="text-clancy-white/20 text-xs max-w-md mx-auto leading-relaxed font-light italic">
+	     Si encontraste información relevante publicada por la banda, ¡háznoslo saber en nuestro canal de WhatsApp!
+	     </p>
           </div>
         )}
       </section>
@@ -109,10 +111,10 @@ const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI";
           <div class="border-2 border-dashed border-clancy-red/20 bg-clancy-red/[0.02] p-20 text-center group">
              <p class="text-clancy-white/30 uppercase tracking-[0.5em] font-black text-xs md:text-sm mb-4">Sin reuniones activas</p>
              <p class="text-clancy-white/40 max-w-sm mx-auto mb-12 text-sm font-light italic">
-               La resistencia requiere nuevas coordenadas. Propón una actividad en el canal principal.
+	     No tenemos eventos o convivencias programadas. ¿Quieres proponer algo? ¡Hazlo en nuestro canal de WhatsApp!
              </p>
              <a href={WHATSAPP_LINK} class="btn-tactical px-12 py-4 bg-clancy-red text-white font-black text-[11px] uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all inline-block shadow-[0_0_20px_rgba(255,0,0,0.2)]">
-               Abrir WhatsApp
+               Canal de WhatsApp
              </a>
           </div>
         )}

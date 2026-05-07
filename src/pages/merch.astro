@@ -3,22 +3,262 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import FanMerch from '../components/FanMerch.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// Assets de los logos
+import hiveLogo from '../assets/the_hive_merch.jpeg';
+import dragonflyLogo from '../assets/dragonfly_merch.png';
+import tamagotchiLogo from '../assets/tamagotchi_store.jpg';
+import bracelettLogo from '../assets/bracelett_store.png';
+import uziLogo from '../assets/uzis.jpg'; 
+
+const merchFeatures = [
+  "Libretas, camisetas, llaveros, stickers, peluches, souvenirs y más.",
+  "Envíos a toda la República Mexicana 🇲🇽",
+  "Artículos personalizables bajo pedido",
+  "Hechos por el Clique, pero disponible para tod@s."
+];
+
+const hiveFeatures = [
+  "Diseños exclusivos y personalizados",
+  "Envíos a toda la República Mexicana 🇲🇽",
+  "Calidad artesanal en cada pieza"
+];
+
+const dragonflyFeatures = [
+  "Playeras de alta calidad y estampados únicos",
+  "Técnicas de serigrafía y vinil textil",
+  "Envíos a toda la República Mexicana 🇲🇽"
+];
+
+const tamagotchiFeatures = [
+  "Impresión digital y diseño gráfico personalizado",
+  "Stickers de alta durabilidad y corte preciso",
+  "Identidad visual",
+  "Envíos a toda la República Mexicana 🇲🇽"
+];
+
+const bracelettFeatures = [
+  "Brazaletes artesanales",
+  "Materiales seleccionados de alta resistencia",
+  "Diseños personalizados",
+  "Envíos a toda la República Mexicana 🇲🇽"
+];
+
+const uziFeatures = [
+  "CDs personalizados",
+  "Diseños de calidad",
+  "Materiales resistentes",
+  "Envíos a toda la República Mexicana 🇲🇽"
+];
 ---
 
 <Layout title="Merch - Secta Banditos">
   <Navbar />
-  <main class="py-20 sm:py-32 min-h-screen bg-base-200">
-    <div class="text-center mb-16 mt-10">
-      <span class="text-accent text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">
-        Apoya a los Creadores
-      </span>
-      <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
-        Fan <span class="text-primary">Merch</span>
-      </h2>
+  
+  <main class="relative bg-clancy-dark text-clancy-white min-h-screen py-24 px-6 overflow-hidden" transition:name="main-content" transition:animate="slide">
+    
+    <div class="absolute inset-0 pointer-events-none z-10 scanlines opacity-20"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-clancy-red/5 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <header class="mb-20 reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="h-[1px] w-12 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+          <span class="text-clancy-red font-black tracking-[0.5em] uppercase text-[10px] md:text-xs text-flicker">SUMiNiSTRØS // CLiQUE</span>
+        </div>
+        
+        <h1 class="text-7xl md:text-9xl font-heading leading-[0.8] uppercase tracking-tighter mb-12">
+          Fan <br/>
+          <span class="clancy-title-red text-clancy-red">Merch</span>
+        </h1>
+
+        <div class="border-l-2 border-clancy-red/30 pl-8 py-4 max-w-2xl">
+          <ul class="space-y-6">
+            {merchFeatures.map((feature, index) => (
+              <li class={`flex items-center gap-4 group reveal delay-${(index + 1) * 100}`}>
+                <div class="relative flex items-center justify-center">
+                  <div class="w-2.5 h-2.5 bg-clancy-red rounded-full animate-ping absolute opacity-40"></div>
+                  <div class="w-2.5 h-2.5 bg-clancy-red rounded-full relative shadow-[0_0_10px_#ff0000]"></div>
+                </div>
+                <span class="text-xs md:text-sm uppercase font-black tracking-[0.25em] text-clancy-white/60 group-hover:text-white transition-colors duration-300">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </header>
+
+      <section class="reveal delay-500 mb-32">
+        <div class="relative p-1 md:p-8 border border-clancy-white/5 bg-clancy-white/[0.01]">
+          <div class="absolute -top-1 -right-1 w-12 h-12 border-t-2 border-r-2 border-clancy-red opacity-60"></div>
+          <div class="absolute -bottom-1 -left-1 w-12 h-12 border-b-2 border-l-2 border-clancy-red opacity-60"></div>
+          <FanMerch />
+        </div>
+      </section>
+
+      <section class="reveal delay-700 mt-40 pt-20 border-t border-clancy-white/5">
+        <div class="grid md:grid-cols-2 gap-12 items-center bg-yellow-500/[0.03] p-8 md:p-16 border border-yellow-500/10 relative overflow-hidden group">
+          <div class="relative z-10 order-2 md:order-1">
+            <h2 class="text-5xl md:text-7xl font-heading uppercase leading-none mb-6 text-yellow-500">The Hive Merch</h2>
+            <p class="text-clancy-white/70 text-lg italic mb-8 font-light border-l-2 border-yellow-500 pl-6">Libretas, tazas, peluches, ¡y más!.</p>
+            <ul class="space-y-4">
+              {hiveFeatures.map((f) => (
+                <li class="flex items-center gap-3 group">
+                  <div class="w-2 h-2 bg-yellow-500 rotate-45 group-hover:rotate-180 transition-transform duration-500"></div>
+                  <span class="text-[10px] md:text-xs uppercase font-black tracking-widest text-white/50 group-hover:text-yellow-500">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://instagram.com/the_hive_merch" target="_blank" class="mt-10 inline-block bg-yellow-500 text-black font-black px-8 py-3 uppercase text-[10px] tracking-[0.3em] hover:bg-white transition-colors skew-x-[-10deg]">Contáctanos</a>
+          </div>
+          <div class="relative order-1 md:order-2 flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <div class="absolute -inset-4 border border-yellow-500/20 rounded-full animate-pulse"></div>
+                <Image src={hiveLogo} alt="The Hive Merch" class="w-full h-full object-cover rounded-full border-2 border-yellow-500 grayscale group-hover:grayscale-0 transition-all duration-700" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal delay-700 mt-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center bg-white/[0.02] p-8 md:p-16 border border-white/10 relative overflow-hidden group">
+          <div class="relative flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <div class="absolute -inset-4 border border-white/10 rounded-full animate-pulse"></div>
+                <Image src={dragonflyLogo} alt="Dragonfly Merch" class="w-full h-full object-contain p-4 transition-all duration-700 scale-95 group-hover:scale-105" />
+            </div>
+          </div>
+          <div class="relative z-10">
+            <h2 class="text-5xl md:text-7xl font-heading uppercase leading-none mb-6 text-white">Dragonfly Merch</h2>
+            <p class="text-clancy-white/70 text-lg italic mb-8 font-light border-l-2 border-white pl-6">Playeras y estampados de alta resistencia.</p>
+            <ul class="space-y-4">
+              {dragonflyFeatures.map((f) => (
+                <li class="flex items-center gap-3 group">
+                  <div class="w-3 h-[1px] bg-white group-hover:w-5 transition-all duration-500"></div>
+                  <span class="text-[10px] md:text-xs uppercase font-black tracking-widest text-white/50 group-hover:text-white">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://www.instagram.com/dragonfly_merchshop?igsh=eWtzcGUzbXo5Yjcy" target="_blank" class="mt-10 inline-block border-2 border-white text-white font-black px-8 py-3 uppercase text-[10px] tracking-[0.3em] hover:bg-white hover:text-black transition-all skew-x-[10deg]">Ver Catálogo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal delay-700 mt-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center bg-cyan-500/[0.03] p-8 md:p-16 border border-cyan-500/10 relative overflow-hidden group">
+          <div class="relative z-10 order-2 md:order-1">
+            <h2 class="text-5xl md:text-7xl font-heading uppercase leading-[0.9] mb-6 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]">Tamagotchi <br/> <span class="text-xs md:text-sm tracking-[0.5em] block mt-2 text-cyan-200/50">Print & Design</span></h2>
+            <p class="text-clancy-white/70 text-lg italic mb-8 font-light border-l-2 border-cyan-500 pl-6">Diseños, pósters, tarjetas y todo para la impresión de alta calidad.</p>
+            <ul class="space-y-4">
+              {tamagotchiFeatures.map((f) => (
+                <li class="flex items-center gap-3 group">
+                  <div class="w-2 h-2 bg-cyan-400 group-hover:scale-125 transition-transform shadow-[0_0_8px_#22d3ee]"></div>
+                  <span class="text-[10px] md:text-xs uppercase font-black tracking-widest text-white/50 group-hover:text-cyan-400">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://www.instagram.com/tamagotchi.printanddesigne?igsh=ZjgxejlzeXRqeXVz" target="_blank" class="mt-10 inline-block bg-cyan-500 text-black font-black px-8 py-3 uppercase text-[10px] tracking-[0.3em] hover:bg-white transition-all skew-x-[-15deg]">Solicitar Diseño</a>
+          </div>
+          <div class="relative order-1 md:order-2 flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <div class="absolute -inset-2 border border-cyan-500/10 rounded-lg rotate-3"></div>
+                <Image src={tamagotchiLogo} alt="Tamagotchi Print" class="w-full h-full object-contain p-4 relative z-10 transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(34,211,238,0.4)]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal delay-700 mt-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center bg-[#fdfaf6]/[0.02] p-8 md:p-16 border border-[#fdfaf6]/10 relative overflow-hidden group">
+          <div class="relative flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80">
+                <div class="absolute -inset-4 border border-[#fdfaf6]/10 rounded-full animate-pulse"></div>
+                <Image src={bracelettLogo} alt="Bracelett Store" class="w-full h-full object-contain p-6 filter invert group-hover:invert-0 transition-all duration-700" />
+            </div>
+          </div>
+          <div class="relative z-10">
+            <h2 class="text-5xl md:text-7xl font-heading uppercase leading-none mb-6 text-[#fdfaf6]">Bracelett Store</h2>
+            <p class="text-clancy-white/70 text-lg italic mb-8 font-light border-l-2 border-[#fdfaf6] pl-6">Brazaletes artesanales.</p>
+            <ul class="space-y-4">
+              {bracelettFeatures.map((f) => (
+                <li class="flex items-center gap-3 group">
+                  <div class="w-2 h-[1px] bg-[#fdfaf6] opacity-30 group-hover:w-4 transition-all"></div>
+                  <span class="text-[10px] md:text-xs uppercase font-black tracking-widest text-white/50 group-hover:text-[#fdfaf6]">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://www.instagram.com/bracelett_store_?igsh=MWp4a2x3bWQ5czUzNA==" target="_blank" class="mt-10 inline-block border border-[#fdfaf6] text-[#fdfaf6] font-black px-8 py-3 uppercase text-[10px] tracking-[0.3em] hover:bg-[#fdfaf6] hover:text-black transition-all skew-x-[12deg]">Explorar Tienda</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal delay-700 mt-20 mb-32">
+        <div class="grid md:grid-cols-2 gap-12 items-center bg-orange-600/[0.04] p-8 md:p-16 border border-orange-600/10 relative overflow-hidden group">
+          <div class="relative z-10 order-2 md:order-1">
+            <h2 class="text-5xl md:text-7xl font-heading uppercase leading-[0.9] mb-6 text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+              Uzi's <br/> <span class="text-white">CD's Project</span>
+            </h2>
+            <p class="text-clancy-white/70 text-lg italic mb-8 font-light border-l-2 border-orange-500 pl-6">
+              CD's personalizados.
+            </p>
+            <ul class="space-y-4">
+              {uziFeatures.map((f) => (
+                <li class="flex items-center gap-3 group">
+                  <div class="w-2 h-2 bg-orange-500 rounded-full group-hover:animate-ping transition-all"></div>
+                  <span class="text-[10px] md:text-xs uppercase font-black tracking-widest text-white/50 group-hover:text-orange-400 transition-colors">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="https://www.facebook.com/share/1GTzbErmWF/" target="_blank" class="mt-10 inline-block bg-orange-600 text-white font-black px-8 py-3 uppercase text-[10px] tracking-[0.3em] hover:bg-white hover:text-orange-600 transition-all skew-x-[-10deg]">
+              Grabar mi CD
+            </a>
+          </div>
+          <div class="relative order-1 md:order-2 flex justify-center">
+            <div class="relative w-64 h-64 md:w-80 md:h-80 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute -inset-6 bg-orange-600/10 blur-2xl rounded-full animate-pulse-slow"></div>
+                <Image src={uziLogo} alt="Uzi's CD Project" class="w-full h-full object-contain p-4 relative z-10 filter drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="mt-24 text-center reveal delay-700">
+        <div class="inline-block p-1 bg-gradient-to-r from-transparent via-clancy-red/20 to-transparent w-full h-[1px] mb-12"></div>
+        <div class="max-w-2xl mx-auto">
+          <p class="text-clancy-red font-black text-xs uppercase tracking-[0.4em] mb-4 flicker-slow">Logística de Entrega</p>
+          <p class="text-clancy-white/50 text-[10px] md:text-xs uppercase tracking-[0.2em] leading-loose italic">
+            La distribución se coordina directamente con los creadores. Mantente alerta a nuestro canal oficial para próximos puntos de entrega en las incursiones.
+          </p>
+        </div>
+      </footer>
     </div>
-    
-    <FanMerch />
-    
   </main>
   <Footer />
 </Layout>
+
+<style>
+  /* Se mantienen tus estilos de animaciones y scanlines */
+  .clancy-title-red {
+    color: #ff0000;
+    transform: scaleY(1.15);
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+    letter-spacing: -0.05em;
+    font-weight: 900;
+  }
+  .reveal { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+  .scanlines { background: repeating-linear-gradient(to bottom, transparent 0px, transparent 3px, rgba(0, 0, 0, 0.12) 3px, rgba(0, 0, 0, 0.12) 4px); }
+  .flicker-slow { animation: flicker-slow 5s infinite; }
+  @keyframes flicker-slow { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .animate-pulse-slow { animation: pulse 8s infinite ease-in-out; }
+  @keyframes pulse { 0%, 100% { opacity: 0.1; } 50% { opacity: 0.3; } }
+
+  :global(.merch-card) {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(255, 0, 0, 0.1) !important;
+  }
+</style>

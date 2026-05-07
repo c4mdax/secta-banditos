@@ -11,50 +11,64 @@ import Footer from '../components/Footer.astro';
   <main class="relative bg-clancy-dark text-clancy-white min-h-screen py-24 px-6 overflow-hidden" transition:name="main-content" transition:animate="slide">
     
     <div class="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-clancy-red/10 to-transparent pointer-events-none opacity-40"></div>
-    
+    <div class="absolute inset-0 pointer-events-none z-10 scanlines opacity-30"></div>
+
     <div class="max-w-7xl mx-auto relative z-10">
       
-      <header class="text-center mb-24 reveal">
-        <div class="flex items-center justify-center gap-4 mb-6">
-          <div class="h-[1px] w-8 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
-          <span class="text-clancy-red font-black tracking-[0.6em] uppercase text-[10px] md:text-xs">
-            Evidencia Visual
+      <header class="mb-24 reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="h-[1px] w-12 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+          <span class="text-clancy-red font-black tracking-[0.5em] uppercase text-[10px] md:text-xs">
           </span>
-          <div class="h-[1px] w-8 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
         </div>
         
-        <h1 class="text-7xl md:text-9xl font-heading leading-none uppercase tracking-tighter">
-          <span class="clancy-title-red">Galería</span>
+        <h1 class="text-7xl md:text-9xl font-heading leading-[0.8] uppercase tracking-tighter">
+          Nuestra <br/>
+          <span class="clancy-title-red text-clancy-red">galería</span>
         </h1>
         
-        <p class="mt-8 text-clancy-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold max-w-lg mx-auto leading-relaxed">
-          Fragmentos de la lucha • Recuerdos de la Secta • <span class="text-clancy-red">Voldoy</span>
-        </p>
+        <div class="mt-8 flex flex-col md:flex-row md:items-center gap-4 border-l-2 border-clancy-red/30 pl-6 py-2">
+           <p class="text-clancy-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold leading-relaxed">
+            Recuerdos de eventos, convivencias y demás<span class="text-clancy-red"></span>
+          </p>
+          <div class="flex items-center gap-2">
+            <div class="w-1.5 h-1.5 rounded-full bg-clancy-red animate-pulse"></div>
+            <span class="text-[9px] font-mono opacity-30 uppercase tracking-[0.2em]"></span>
+          </div>
+        </div>
       </header>
 
       <section class="reveal delay-200">
-        <div class="relative p-1 md:p-4 border border-clancy-white/5 bg-clancy-white/[0.02]">
-          <div class="absolute -top-2 -left-2 w-10 h-10 border-t-2 border-l-2 border-clancy-red opacity-40"></div>
-          <div class="absolute -bottom-2 -right-2 w-10 h-10 border-b-2 border-r-2 border-clancy-red opacity-40"></div>
+        <div class="relative p-1 md:p-6 border border-clancy-white/5 bg-clancy-white/[0.02] shadow-2xl">
+          <div class="absolute -top-1 -left-1 w-12 h-12 border-t-2 border-l-2 border-clancy-red opacity-60"></div>
+          <div class="absolute -bottom-1 -right-1 w-12 h-12 border-b-2 border-r-2 border-clancy-red opacity-60"></div>
           
+          <div class="absolute top-4 right-6 flex gap-2 pointer-events-none opacity-20 font-mono text-[8px] uppercase tracking-tighter text-clancy-red">
+            <span>REC [●]</span>
+            <span>4K_60FPS</span>
+          </div>
+
           <Gallery />
         </div>
       </section>
 
-      <footer class="mt-32 text-center reveal delay-300">
-        <div class="inline-block p-1 bg-gradient-to-r from-transparent via-clancy-red/30 to-transparent w-full h-[1px] mb-12"></div>
-        <p class="text-clancy-white/60 text-sm md:text-lg font-light tracking-widest uppercase">
-          ¿Tienes material de la última incursión?
-        </p>
-        <p class="text-clancy-red font-black text-xs mt-2 uppercase tracking-[0.2em]">
-          Compártelo en el canal principal para ser archivado.
-        </p>
+      <footer class="mt-32 text-center reveal delay-300 max-w-3xl mx-auto">
+        <div class="h-[1px] bg-gradient-to-r from-transparent via-clancy-red/40 to-transparent w-full mb-12"></div>
+        
+        <div class="inline-block border border-clancy-red/20 px-8 py-6 skew-x-[-10deg] bg-clancy-red/5">
+            <p class="text-clancy-white/80 text-sm md:text-lg font-black tracking-widest uppercase mb-2">
+              ¿Tienes material de un evento con nosotros?
+            </p>
+            <p class="text-clancy-red font-black text-xs uppercase tracking-[0.3em] flicker-slow">
+              ¡Compártelo en el canal!.
+            </p>
+        </div>
       </footer>
 
     </div>
 
-    <div class="absolute top-1/2 -right-20 hidden lg:block border-r-2 border-clancy-red/10 h-64 pointer-events-none"></div>
-    <div class="absolute top-1/2 -left-20 hidden lg:block border-l-2 border-clancy-red/10 h-64 pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-10 hidden lg:block border-r-2 border-clancy-red/10 h-64 pointer-events-none -translate-y-1/2"></div>
+    <div class="absolute top-1/2 -left-10 hidden lg:block border-l-2 border-clancy-red/10 h-64 pointer-events-none -translate-y-1/2"></div>
   </main>
 
   <Footer />
@@ -63,9 +77,9 @@ import Footer from '../components/Footer.astro';
 <style>
   .clancy-title-red {
     color: #ff0000;
-    transform: scaleY(1.1);
+    transform: scaleY(1.15);
     display: inline-block;
-    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.4));
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
     letter-spacing: -0.05em;
     font-weight: 900;
   }
@@ -73,7 +87,7 @@ import Footer from '../components/Footer.astro';
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes fadeInUp {
@@ -83,14 +97,50 @@ import Footer from '../components/Footer.astro';
   .delay-200 { animation-delay: 0.2s; }
   .delay-300 { animation-delay: 0.4s; }
 
+  /* Scanlines (Copiado de Sobre Nosotros) */
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.12) 3px,
+      rgba(0, 0, 0, 0.12) 4px
+    );
+  }
+
+  /* Ruido de fondo */
+  main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  @keyframes flicker-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+    55% { opacity: 0.9; }
+    57% { opacity: 0.4; }
+  }
+
+  .flicker-slow {
+    animation: flicker-slow 6s infinite;
+  }
+
   /* Estilo para que el componente Gallery se integre visualmente */
   :global(.gallery-item) {
-    transition: all 0.5s ease;
-    filter: grayscale(40%) contrast(1.1);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: grayscale(80%) contrast(1.1) brightness(0.8);
+    border: 1px solid rgba(255, 0, 0, 0.1);
   }
 
   :global(.gallery-item:hover) {
-    filter: grayscale(0%) contrast(1.2);
-    transform: scale(1.02);
+    filter: grayscale(0%) contrast(1.2) brightness(1.1);
+    transform: scale(1.03);
+    border-color: rgba(255, 0, 0, 0.5);
+    z-index: 20;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
   }
 </style>
