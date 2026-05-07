@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import backgroundImage from '../assets/background.webp';
+import logoImage from '../assets/sb-logo.jpg'; 
+---
+
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-clancy-dark font-sans">
+  <div class="absolute inset-0 z-0">
+    <Image 
+      src={backgroundImage} 
+      alt="Secta Banditos Background" 
+      class="w-full h-full object-cover opacity-40 scale-105 animate-slow-zoom"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-clancy-dark via-transparent to-clancy-dark/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-clancy-dark/40 via-transparent to-clancy-dark/40"></div>
+  </div>
+
+  <div class="relative z-10 text-center px-4 max-w-6xl mx-auto flex flex-col items-center">
+    
+    <div class="mb-6 reveal">
+      <Image 
+        src={logoImage} 
+        alt="Secta Banditos Logo" 
+        class="w-24 md:w-32 h-auto filter brightness-110 drop-shadow-[0_0_20px_rgba(255,0,0,0.6)]"
+      />
+    </div>
+
+    <div class="flex items-center justify-center gap-4 mb-8 reveal">
+      <div class="h-[1px] w-12 bg-clancy-red"></div>
+      <span class="text-clancy-red font-bold tracking-[0.6em] uppercase text-[10px] md:text-xs">
+        Establecidos en la Resistencia
+      </span>
+      <div class="h-[1px] w-12 bg-clancy-red"></div>
+    </div>
+
+    <h1 class="text-6xl md:text-9xl lg:text-[10rem] font-heading leading-[0.8] mb-4 text-clancy-white tracking-tighter uppercase reveal">
+      Secta <br class="hidden md:block" />
+      <span class="clancy-banditos block mt-2 py-4 px-6">
+        Banditos
+      </span>
+    </h1>
+
+    <p class="text-clancy-white/60 text-lg md:text-2xl max-w-2xl mx-auto mb-12 font-light tracking-wide reveal delay-200">
+      <span class="text-clancy-white border-r-2 border-clancy-red pr-3">Voldoy</span> 
+      Sitio oficial de merch, convivencias y el legado del Clique.
+    </p>
+
+    <div class="flex flex-col md:flex-row gap-8 justify-center items-center reveal delay-300 w-full md:w-auto">
+      
+      <a href="/about" class="btn-breach group relative px-14 py-4 overflow-hidden bg-clancy-red text-white transition-all duration-300 hover:scale-105 active:scale-95 w-full md:w-auto">
+        <span class="relative z-10 font-black uppercase tracking-[0.3em] text-xs transition-colors group-hover:text-clancy-dark">
+          Conócenos
+        </span>
+        <div class="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+        <div class="absolute inset-0 bg-clancy-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+      </a>
+
+      <a href="/merch" class="btn-breach-outline group relative px-14 py-4 overflow-hidden border-2 border-clancy-white/20 text-clancy-white transition-all duration-300 hover:border-clancy-red w-full md:w-auto">
+        <span class="relative z-10 font-black uppercase tracking-[0.3em] text-xs group-hover:text-clancy-red transition-colors">
+          Ver Merch
+        </span>
+        <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-clancy-red opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-clancy-red opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="absolute bottom-10 left-10 hidden lg:block border-l-2 border-b-2 border-clancy-red/30 w-20 h-20 opacity-50"></div>
+  <div class="absolute top-10 right-10 hidden lg:block border-r-2 border-t-2 border-clancy-red/30 w-20 h-20 opacity-50"></div>
+</section>
+
+<style>
+  /* ESTILO BANDITOS: Sin cortes y con degradado profundo */
+  .clancy-banditos {
+    display: block;
+    width: fit-content;
+    margin: 0.01em auto 0;
+    color: #ff0000; 
+    background-image: linear-gradient(to bottom, #ff0000 0%, #ff0000 40%, #ff0000 85%, #ff0000 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 15px rgba(255, 0, 0, 0.5)) contrast(1.2);
+    will-change: filter;
+    overflow: visible;
+  }
+
+  /* BOTONES EVOLUCIONADOS (Geometría Skew) */
+  .btn-breach {
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  }
+  
+  .btn-breach-outline {
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
+  }
+
+  /* Animaciones */
+  @keyframes slow-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+  }
+  .animate-slow-zoom {
+    animation: slow-zoom 20s infinite alternate linear;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.4s; }
+</style>

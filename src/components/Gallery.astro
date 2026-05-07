@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+
+// 1. Astro busca automáticamente todos los .md en src/content/gallery/
+const galleryEntries = await getCollection('gallery');
+
+// (Opcional) Ordenar las fotos por fecha, de la más reciente a la más antigua
+galleryEntries.sort((a, b) => {
+  return new Date(b.data.date || 0).valueOf() - new Date(a.data.date || 0).valueOf();
+});
+---
+
+<div class="max-w-[1000px] mx-auto px-4 sm:px-6">
+  <div class="flex flex-col gap-12 sm:gap-16">
+    {
+      galleryEntries.map((entry, index) => (
+        <div class={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+          
+          <div class="w-full md:w-1/2">
+            <div class="relative group overflow-hidden rounded-xl shadow-2xl border border-base-content/10">
+              <img 
+                src={entry.data.image} 
+                alt={entry.data.title} 
+                class="w-full h-[300px] object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+          </div>
+
+          <div class="w-full md:w-1/2 flex flex-col justify-center">
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-primary">
+              {entry.data.title}
+            </h3>
+            <p class="text-base-content/80 leading-relaxed text-sm sm:text-base">
+              {entry.data.description}
+            </p>
+          </div>
+
+        </div>
+      ))
+    }
+  </div>
+</div>

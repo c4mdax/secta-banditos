@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+
+// Obtenemos todos los eventos de la carpeta src/content/meetings/
+const meetings = await getCollection('meetings');
+
+// Ordenamos por fecha (asumiendo que el formato de fecha permite ordenamiento o simplemente por orden de creación)
+const hasMeetings = meetings.length > 0;
+
+// Función para definir el estilo visual según la categoría
+const getStyles = (category) => {
+  switch (category) {
+    case 'oficial': 
+      return "border-clancy-red bg-clancy-red/10 shadow-[0_0_15px_rgba(153,0,0,0.2)]";
+    case 'concierto': 
+      return "border-primary bg-base-200 ring-1 ring-primary/20";
+    case 'lanzamiento': 
+      return "border-white bg-white/5 border-dashed";
+    default: // convivencia
+      return "border-primary/40 bg-base-200/50";
+  }
+};
+---
+
+<div class="w-full">
+  {hasMeetings ? (
+    <div class="grid gap-6 md:grid-cols-2">
+      {meetings.map((meeting) => (
+        <div class={`p-8 border-l-4 transition-all duration-300 group hover:-translate-y-1 ${getStyles(meeting.data.category)}`}>
+          
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-primary font-bold text-[10px] tracking-[0.2em] uppercase">
+              {meeting.data.date}
+            </span>
+            <span class="text-[9px] px-2 py-0.5 border border-current rounded-full uppercase font-black opacity-60">
+              {meeting.data.category}
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-heading mb-3 text-base-content group-hover:text-primary transition-colors">
+            {meeting.data.title}
+          </h3>
+
+          <div class="flex items-center gap-2 text-base-content/60 mb-4 text-xs font-bold uppercase tracking-wider">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            </svg>
+            {meeting.data.location}
+          </div>
+
+          <p class="text-sm text-base-content/70 leading-relaxed italic border-t border-base-content/5 pt-4">
+            {meeting.data.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  ) : (
+    /* MENSAJE DE ESTADO VACÍO (Si no hay archivos .md) */
+    <div class="reveal border-2 border-dashed border-primary/20 py-20 px-6 text-center bg-base-200/30 rounded-xl">
+      <div class="mb-6 inline-block p-5 rounded-full bg-primary/10 animate-pulse">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      
+      <h3 class="text-4xl font-heading text-base-content mb-4 tracking-tighter">
+        SILENCIO EN LA <span class="text-primary">TRINCHERA</span>
+      </h3>
+      
+      <p class="text-lg text-base-content/70 max-w-md mx-auto leading-relaxed">
+        No tenemos eventos ni lanzamientos programados por ahora. 
+        <span class="text-primary font-bold">¿Te atreverías a proponer algo?</span>
+      </p>
+      
+      <p class="mt-6 text-xs text-base-content/40 uppercase tracking-[0.3em]">
+        Reporta cualquier actividad en nuestro canal
+      </p>
+    </div>
+  )}
+</div>

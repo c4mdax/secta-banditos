@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import MeetingsList from "../components/MeetingsList.astro";
+
+const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI"; // Reemplaza con el link real
+---
+
+<Layout title="Eventos - Secta Banditos">
+  <Navbar />
+
+  <main class="bg-base-100 min-h-screen py-20 px-6" transition:name="main-content" transition:animate="slide">
+    <div class="max-w-5xl mx-auto">
+      
+      <header class="mb-16 reveal">
+        <span class="text-primary font-bold tracking-[0.4em] uppercase text-xs block mb-4">
+          Próximas Incursiones
+        </span>
+        <h1 class="text-6xl md:text-8xl font-heading text-base-content leading-none">
+          Even<span class="text-primary">tos</span>
+        </h1>
+      </header>
+
+      <section class="mb-20">
+        <MeetingsList />
+      </section>
+
+      <section class="reveal border-2 border-dashed border-clancy-red/30 p-8 md:p-12 text-center bg-clancy-red/5 rounded-lg">
+        <h2 class="text-3xl font-heading mb-4 text-base-content">¿Quieres organizar una actividad con nosotros?</h2>
+        <p class="text-base-content/70 max-w-2xl mx-auto mb-8 leading-relaxed">
+          La Secta la hacemos todos. Si tienes una idea para una actividad, únete a nuestro grupo de WhatsApp.
+        </p>
+        
+        <a 
+          href={WHATSAPP_LINK} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="btn-tactical inline-flex items-center gap-3 bg-primary text-white hover:bg-transparent transition-all"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.448 0 9.886-4.438 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.735-.981z"/>
+          </svg>
+          Unirse al Grupo de WhatsApp
+        </a>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

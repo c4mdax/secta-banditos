@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Inicio - Secta Banditos">
+  <Navbar />
+  
+  <main 
+    class="bg-clancy-dark text-clancy-white min-h-screen" 
+    transition:name="main-content" 
+    transition:animate="slide"
+  >
+    <section class="relative border-b border-clancy-red/30">
+      <Hero />
+      
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-clancy-dark/80 pointer-events-none"></div>
+    </section>
+
+    <section class="py-20 px-6 max-w-5xl mx-auto">
+      <div class="border-l-4 border-clancy-red pl-6">
+        <h2 class="text-4xl font-bold tracking-tighter uppercase mb-4">
+          The <span class="text-clancy-red">End</span> is near
+        </h2>
+        <p class="text-clancy-white/70 max-w-2xl leading-relaxed">
+          Bienvenidos a la resistencia. Este es el espacio oficial de la Secta Banditos, 
+          unidos por la música y la narrativa de Clancy. Prepárate para el intercambio 
+          y las próximas reuniones.
+        </p>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

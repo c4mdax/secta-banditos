@@ -1,0 +1,80 @@
+---
+import logo from "../assets/sb-logo.jpg";
+import { siteConfig } from "../data/siteConfig";
+---
+
+<header class="sticky top-0 z-50 bg-clancy-dark border-b border-clancy-red/50 shadow-xl">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="/" class="flex items-center gap-3 group">
+        <img
+          src={logo.src}
+          alt={`${siteConfig.siteName} Logo`}
+          class="w-10 h-10 object-contain transition-transform group-hover:scale-110 border border-clancy-red/30 rounded-full"
+        />
+        <div class="flex flex-col">
+          <span class="font-heading text-xl leading-none tracking-tighter text-clancy-white"
+            >{siteConfig.siteName}</span
+          >
+          <span
+            class="text-[10px] uppercase tracking-widest text-clancy-red font-bold"
+            >{siteConfig.siteSubtitle}</span
+          >
+        </div>
+      </a>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
+      <a href="/" class="text-clancy-white hover:text-clancy-red transition-colors duration-300">Inicio</a>
+      <a href="/about" class="text-clancy-white hover:text-clancy-red transition-colors duration-300">Sobre Nosotros</a>
+      <a href="/meetings" class="text-clancy-white hover:text-clancy-red transition-colors duration-300">Eventos</a>
+      <a href="/gallery" class="text-clancy-white hover:text-clancy-red transition-colors duration-300">Galería</a>
+      <a href="/merch" class="text-clancy-white hover:text-clancy-red transition-colors duration-300">Fan Merch</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-clancy-white hover:bg-clancy-red/20 transition-colors cursor-pointer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-clancy-red/30 bg-clancy-dark/95 backdrop-blur-md"
+  >
+    <nav class="flex flex-col py-4 px-4 sm:px-6 space-y-3 text-xs font-bold uppercase tracking-widest">
+      <a href="/" class="text-clancy-white hover:text-clancy-red transition-colors py-2">Inicio</a>
+      <a href="/about" class="text-clancy-white hover:text-clancy-red transition-colors py-2">Sobre Nosotros</a>
+      <a href="/meetings" class="text-clancy-white hover:text-clancy-red transition-colors py-2">Eventos</a>
+      <a href="/gallery" class="text-clancy-white hover:text-clancy-red transition-colors py-2">Galería</a>
+      <a href="/merch" class="text-clancy-white hover:text-clancy-red transition-colors py-2">Fan Merch</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu") as HTMLElement;
+    
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.remove("hidden");
+          mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+        } else {
+          mobileMenu.style.maxHeight = "0";
+          setTimeout(() => mobileMenu.classList.add("hidden"), 300);
+        }
+      });
+    }
+  });
+</script>

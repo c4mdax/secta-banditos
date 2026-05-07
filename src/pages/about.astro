@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const values = [
+  { title: "Comunidad", desc: "Apoyamos a todos los miembros, desde los veteranos hasta los nuevos del Clique." },
+  { title: "Creatividad", desc: "Impulsamos el fan-art, la creación de merch propia y las dinámicas en los conciertos (sí, confiamos en que ellos volverán...)." },
+  { title: "Respeto", desc: "Dema no tiene lugar aquí. Fomentamos un ambiente sano y libre de toxicidad." }
+];
+---
+
+<Layout title="Sobre Nosotros - Secta Banditos">
+  <Navbar />
+  
+  <main 
+    class="relative bg-clancy-dark text-clancy-white min-h-screen py-24 px-6 overflow-hidden" 
+    transition:name="main-content" 
+    transition:animate="slide"
+  >
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-clancy-red/5 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto relative z-10">
+      
+      <header class="mb-20 reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="h-[1px] w-12 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+          <span class="text-clancy-red font-black tracking-[0.5em] uppercase text-[10px] md:text-xs">
+            ARCHIVO_09 // RESISTENCIA
+          </span>
+        </div>
+        <h1 class="text-7xl md:text-9xl font-heading leading-[0.8] uppercase tracking-tighter">
+          Quiénes <br/>
+          <span class="clancy-title-red">Somos</span>
+        </h1>
+      </header>
+
+      <div class="grid md:grid-cols-2 gap-16 items-start mb-32">
+        <div class="reveal-left space-y-8">
+          <p class="text-2xl text-clancy-white font-bold leading-tight tracking-tight border-l-4 border-clancy-red pl-6 py-2">
+            Somos una comunidad unida por lo que Twenty One Pilots significa en México y en nosotros.
+          </p>
+          
+          <div class="space-y-6 text-clancy-white/60 leading-relaxed font-light">
+            <p>
+              Nacimos en diversos grupos de comunicación, compartiendo teorías, 
+              filtraciones y la emoción de cada era. Hoy, somos un colectivo que
+              pretende promocionar Merch, informar sobre lo reciente de TØP
+              y fomentar el respeto entre el Clique general, siempre recordando
+              y protegiendo el legado de la antorcha tras el "final" de la narrativa
+              de Dema.
+            </p>
+          </div>
+        </div>
+
+        <!-- ANTORCHA -->
+        <div class="reveal-right relative border border-clancy-white/5 border-l-[3px] border-l-clancy-red overflow-hidden flex flex-col items-center justify-center min-h-[340px] w-full">
+
+          <!-- Scanlines -->
+          <div class="absolute inset-0 pointer-events-none z-10 scanlines"></div>
+
+          <!-- Corner labels -->
+          <span class="absolute top-3 left-4 font-mono text-[9px] text-clancy-white/10 tracking-widest uppercase z-10"></span>
+          <span class="absolute bottom-3 right-4 font-mono text-[9px] text-clancy-white/10 tracking-widest uppercase z-10"></span>
+
+          <!-- Red dot -->
+          <div class="absolute top-3 right-4 w-1.5 h-1.5 rounded-full bg-clancy-red animate-pulse z-10"></div>
+
+          <!-- Light cone -->
+          <div class="absolute bottom-20 left-1/2 -translate-x-1/2 w-32 h-36 light-cone pointer-events-none z-[1]"></div>
+
+          <!-- Torch -->
+          <div class="relative z-[5] flex flex-col items-center torch-float py-8">
+
+            <!-- Flame -->
+            <div class="relative w-9 h-14">
+              <div class="flame-glow absolute -top-3 -left-4 -right-4 -bottom-1 rounded-full pointer-events-none"></div>
+              <div class="absolute inset-0 bg-clancy-red flame-shape blur-[3px] flame-main opacity-95"></div>
+              <div class="absolute top-2.5 left-1.5 right-1.5 bottom-2 bg-orange-600 flame-shape blur-[2px] flame-inner opacity-90"></div>
+              <div class="absolute top-4 left-2.5 right-2.5 bottom-3.5 bg-yellow-200 rounded-full blur-[1.5px] flame-inner opacity-85"></div>
+            </div>
+
+            <!-- Band -->
+            <div class="w-5 h-1.5 bg-clancy-red rounded-sm relative z-10"></div>
+
+            <!-- Handle -->
+            <div class="torch-handle w-3.5 relative">
+              <div class="absolute top-0 left-0.5 right-0.5 h-3 bg-zinc-600/50 rounded-b-sm"></div>
+            </div>
+          </div>
+
+          <!-- Label -->
+          <div class="pb-8 text-center relative z-10">
+            <span class="block font-black text-[10px] text-clancy-red tracking-[0.5em] uppercase mb-1 label-flicker">Stay Alive | Sahlo Folina</span>
+
+          </div>
+
+          <!-- Bottom red line -->
+          <div class="absolute bottom-0 left-0 w-full h-0.5 bg-clancy-red opacity-60"></div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-8 mt-12 border-t border-clancy-white/10 pt-16 reveal delay-200">
+        {values.map((val) => (
+          <div class="value-item group relative border border-clancy-white/5 p-8 bg-gradient-to-b from-clancy-white/[0.02] to-transparent hover:border-clancy-red/30 transition-all duration-500 overflow-hidden">
+            <div class="absolute bottom-0 right-0 text-clancy-red/5 font-black text-6xl translate-y-4 translate-x-4 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform duration-700 pointer-events-none uppercase italic">
+              {val.title.slice(0, 3)}
+            </div>
+            <h4 class="text-clancy-red font-black text-xl mb-4 uppercase tracking-[0.2em] group-hover:tracking-widest transition-all">
+              {val.title}
+            </h4>
+            <p class="text-sm text-clancy-white/50 leading-relaxed italic relative z-10">
+              "{val.desc}"
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div class="absolute bottom-0 left-0 hidden lg:block border-l-2 border-b-2 border-clancy-red/20 w-32 h-32 pointer-events-none opacity-20"></div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .clancy-title-red {
+    color: #ff0000;
+    transform: scaleY(1.15);
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+    letter-spacing: -0.05em;
+    font-weight: 900;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: fadeInSide 1s forwards;
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    animation: fadeInSide 1s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInSide {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .delay-200 { animation-delay: 0.2s; }
+
+  main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+  }
+
+  /* Scanlines */
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.08) 3px,
+      rgba(0, 0, 0, 0.08) 4px
+    );
+  }
+
+  /* Flame shape */
+  .flame-shape {
+    border-radius: 50% 50% 20% 20% / 80% 80% 30% 30%;
+  }
+
+  /* Light cone under flame */
+  .light-cone {
+    background: radial-gradient(ellipse at 50% 0%, rgba(200, 0, 26, 0.12) 0%, transparent 70%);
+  }
+
+  /* Torch handle */
+  .torch-handle {
+    height: 72px;
+    background: linear-gradient(to bottom, #2a2a2a, #111111, #080808);
+    border-radius: 0 0 6px 6px;
+    border-top: 2px solid #3a3a3a;
+    box-shadow: inset 1px 0 0 rgba(255,255,255,0.05), inset -1px 0 0 rgba(0,0,0,0.5);
+  }
+
+  /* Flame glow blob */
+  .flame-glow {
+    background: radial-gradient(ellipse at 50% 60%, rgba(200, 0, 26, 0.35), transparent 70%);
+    animation: glow-pulse 1.2s ease-in-out infinite;
+  }
+
+  /* Torch float */
+  .torch-float {
+    animation: torch-float 6s ease-in-out infinite;
+  }
+
+  /* Skeleton bob */
+  .skeleton-bob {
+    animation: skeleton-bob 3s ease-in-out infinite;
+  }
+
+  /* Label flicker */
+  .label-flicker {
+    animation: label-flicker 8s infinite;
+  }
+
+  /* Main flame */
+  .flame-main {
+    animation: flame-main 0.65s infinite alternate ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  /* Inner flame */
+  .flame-inner {
+    animation: flame-inner 0.5s infinite alternate ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  @keyframes torch-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+  }
+
+  @keyframes skeleton-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+  }
+
+  @keyframes flame-main {
+    0%, 100% { transform: scaleX(1) scaleY(1) skewX(2deg); opacity: 0.95; }
+    25% { transform: scaleX(1.1) scaleY(0.92) skewX(-3deg); opacity: 1; }
+    50% { transform: scaleX(0.9) scaleY(1.12) skewX(4deg); opacity: 0.8; }
+    75% { transform: scaleX(1.05) scaleY(0.97) skewX(-1deg); opacity: 1; }
+  }
+
+  @keyframes flame-inner {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+
+  @keyframes label-flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.4; }
+    94% { opacity: 1; }
+  }
+</style>

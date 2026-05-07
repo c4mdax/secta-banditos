@@ -1,0 +1,5 @@
+    title: z.string(),
+    date: z.string(),
+    location: z.string(),
+    description: z.string(),
+    category: z.string(), // Ensure this matches what you put in the .md

@@ -1,0 +1,96 @@
+---
+import logo from "../assets/bitmap-without-typo-nb.png";
+import { siteConfig } from "../data/siteConfig";
+---
+
+<header class="sticky top-0 z-50 bg-clancy-dark/95 backdrop-blur-md border-b border-clancy-red/40 selection:bg-clancy-red selection:text-white shadow-2xl">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+    
+    <div class="flex items-center">
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="relative flex items-center justify-center w-11 h-11 border border-clancy-red/30 rounded-full transition-all group-hover:border-clancy-red/60">
+          <img
+            src={logo.src}
+            alt={`${siteConfig.siteName} Logo`}
+            class="w-15 h-15 object-contain transition-all duration-500 -translate-y-[1.5px] -translate-x-[0px] group-hover:scale-110 filter brightness-110 group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]"
+          />
+        </div>
+        
+        <div class="flex flex-col">
+          <span class="font-heading text-xl leading-none tracking-tighter text-clancy-white uppercase">
+            {siteConfig.siteName}
+          </span>
+          <span class="text-[9px] uppercase tracking-[0.4em] text-clancy-red font-black mt-0.5">
+            {siteConfig.siteSubtitle}
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-6">
+      {[
+        { label: 'Inicio', href: '/' },
+        { label: 'Sobre Nosotros', href: '/about' },
+        { label: 'Eventos', href: '/meetings' },
+        { label: 'Galería', href: '/gallery' },
+        { label: 'Fan Merch', href: '/merch' }
+      ].map((item) => (
+        <a 
+          href={item.href} 
+          class="text-[10px] font-black uppercase tracking-[0.2em] text-clancy-white/70 hover:text-clancy-red transition-all duration-300 relative group"
+        >
+          {item.label}
+          <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-clancy-red transition-all group-hover:w-full"></span>
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center md:hidden">
+      <button
+        id="mobile-menu-btn"
+        class="p-2 text-clancy-white hover:bg-clancy-red/20 transition-colors rounded-sm"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-clancy-red/20 bg-clancy-dark/98 backdrop-blur-xl transition-all duration-300"
+  >
+    <nav class="flex flex-col py-6 px-6 space-y-4">
+      {[
+        { label: 'Inicio', href: '/' },
+        { label: 'Sobre Nosotros', href: '/about' },
+        { label: 'Eventos', href: '/meetings' },
+        { label: 'Galería', href: '/gallery' },
+        { label: 'Fan Merch', href: '/merch' }
+      ].map((item) => (
+        <a 
+          href={item.href} 
+          class="text-[11px] font-black uppercase tracking-[0.3em] text-clancy-white/80 hover:text-clancy-red py-2 border-b border-white/5"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    }
+  });
+</script>

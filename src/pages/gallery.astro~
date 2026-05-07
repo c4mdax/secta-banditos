@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Gallery from '../components/Gallery.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Galería - Secta Banditos">
+  <Navbar />
+  
+  <main class="py-20 sm:py-32 min-h-screen">
+    <div class="text-center mb-16 mt-10">
+      <span class="text-accent text-[10px] font-bold uppercase tracking-[0.5em] mb-4 block">
+        Recuerdos
+      </span>
+      <h2 class="text-4xl sm:text-5xl md:text-6xl mb-4 sm:mb-6">
+        Galería de <span class="text-primary">Fotos</span>
+      </h2>
+    </div>
+    
+    <Gallery />
+  </main>
+
+  <Footer />
+</Layout>

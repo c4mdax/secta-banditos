@@ -1,0 +1,163 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+const allMeetings = await getCollection('meetings');
+
+// Unified filtering logic
+const convivencias = allMeetings.filter(item => 
+  ['convivencia', 'actividad'].includes(item.data.category.toLowerCase())
+);
+
+const topEvents = allMeetings.filter(item => 
+  !['convivencia', 'actividad'].includes(item.data.category.toLowerCase())
+);
+
+const WHATSAPP_LINK = "https://chat.whatsapp.com/TU_CODIGO_AQUI";
+---
+
+<Layout title="Eventos - Secta Banditos">
+  <Navbar />
+
+  <main class="relative bg-clancy-dark text-clancy-white min-h-screen py-24 px-6 overflow-hidden" transition:name="main-content" transition:animate="slide">
+    
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('/assets/noise.png')] opacity-[0.03] pointer-events-none"></div>
+    <div class="absolute top-0 left-0 w-full h-[60vh] bg-gradient-to-b from-clancy-red/20 via-clancy-red/5 to-transparent pointer-events-none"></div>
+    
+    <div class="max-w-5xl mx-auto relative z-10">
+      
+      <header class="mb-24 reveal">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="h-[1px] w-12 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+          <span class="text-clancy-red font-black tracking-[0.5em] uppercase text-[10px] md:text-xs">
+            Log de Incursiones
+          </span>
+        </div>
+        <h1 class="text-7xl md:text-9xl font-heading leading-[0.8] uppercase tracking-tighter">
+          Próximos <br/>
+          <span class="clancy-title-red">Eventos</span>
+        </h1>
+      </header>
+
+      <section class="mb-32 reveal delay-100">
+        <div class="flex items-center gap-4 mb-12 group">
+          <h2 class="text-2xl md:text-4xl font-black uppercase tracking-[0.2em]">
+            <span class="text-clancy-red">/</span> Twenty One Pilots
+          </h2>
+          <div class="h-[2px] flex-grow bg-gradient-to-r from-clancy-white/20 to-transparent"></div>
+        </div>
+        
+        {topEvents.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-2">
+            {topEvents.map(event => (
+              <div class="event-card group relative p-8 bg-clancy-white/[0.03] border border-clancy-white/10 transition-all duration-500 hover:border-clancy-red hover:bg-clancy-white/[0.06]">
+                <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-clancy-red/20 group-hover:border-clancy-red transition-all duration-300"></div>
+                
+                <span class="text-clancy-red font-mono text-[10px] font-bold uppercase tracking-[0.3em]">{event.data.date}</span>
+                <h3 class="text-3xl font-bold mt-3 mb-4 uppercase leading-none group-hover:tracking-normal transition-all">{event.data.title}</h3>
+                <p class="text-clancy-white/50 text-sm leading-relaxed mb-8 italic">"{event.data.description}"</p>
+                
+                <div class="pt-5 border-t border-clancy-white/10 flex items-center justify-between">
+                  <span class="text-[9px] font-black uppercase tracking-[0.2em] text-clancy-white/40">
+                    <span class="text-clancy-red opacity-100">LOC:</span> {event.data.location}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="border border-clancy-white/10 bg-clancy-white/[0.02] p-20 text-center relative group overflow-hidden">
+             <div class="absolute inset-0 bg-gradient-to-b from-clancy-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+             <p class="text-clancy-white/30 uppercase tracking-[0.5em] font-black text-xs md:text-sm mb-4">Dema está en silencio</p>
+             <p class="text-clancy-white/20 text-xs max-w-md mx-auto leading-relaxed font-light italic">
+               "No hay transmisiones oficiales. Cualquier lanzamiento o incursión será notificada por esta frecuencia."
+             </p>
+          </div>
+        )}
+      </section>
+
+      <section class="mb-32 reveal delay-200">
+        <div class="flex items-center gap-4 mb-12 group">
+          <h2 class="text-2xl md:text-4xl font-black uppercase tracking-[0.2em]">
+            <span class="text-clancy-red">/</span> Convivencias
+          </h2>
+          <div class="h-[2px] flex-grow bg-gradient-to-r from-clancy-white/20 to-transparent"></div>
+        </div>
+
+        {convivencias.length > 0 ? (
+          <div class="grid gap-8 md:grid-cols-2">
+            {convivencias.map(item => (
+              <div class="event-card-skew group relative p-10 bg-clancy-red/[0.03] border-2 border-clancy-red/10 transition-all duration-500 hover:bg-clancy-red/[0.07] hover:border-clancy-red/40">
+                <span class="bg-clancy-red text-white text-[10px] px-3 py-1 font-black uppercase tracking-widest inline-block mb-6 shadow-[0_0_10px_rgba(255,0,0,0.3)]">
+                  {item.data.date}
+                </span>
+                <h3 class="text-3xl font-bold uppercase leading-[0.9] mb-4 group-hover:scale-x-105 transition-transform origin-left">{item.data.title}</h3>
+                <p class="text-clancy-white/60 text-sm leading-relaxed mb-10">{item.data.description}</p>
+                
+                <div class="flex justify-between items-center mt-auto pt-6 border-t border-clancy-red/20">
+                    <span class="text-[10px] font-mono text-clancy-red uppercase font-bold">📍 {item.data.location}</span>
+                    <a href={WHATSAPP_LINK} target="_blank" class="text-[10px] font-black text-white uppercase border-b-2 border-clancy-red pb-1 hover:tracking-widest transition-all">
+                      Detalles →
+                    </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="border-2 border-dashed border-clancy-red/20 bg-clancy-red/[0.02] p-20 text-center group">
+             <p class="text-clancy-white/30 uppercase tracking-[0.5em] font-black text-xs md:text-sm mb-4">Sin reuniones activas</p>
+             <p class="text-clancy-white/40 max-w-sm mx-auto mb-12 text-sm font-light italic">
+               La resistencia requiere nuevas coordenadas. Propón una actividad en el canal principal.
+             </p>
+             <a href={WHATSAPP_LINK} class="btn-tactical px-12 py-4 bg-clancy-red text-white font-black text-[11px] uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all inline-block shadow-[0_0_20px_rgba(255,0,0,0.2)]">
+               Abrir WhatsApp
+             </a>
+          </div>
+        )}
+      </section>
+
+      <div class="absolute bottom-0 right-0 hidden lg:block border-r-2 border-b-2 border-clancy-red/20 w-40 h-40 pointer-events-none opacity-20"></div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .clancy-title-red {
+    color: #ff0000;
+    transform: scaleY(1.15);
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.5));
+    letter-spacing: -0.05em;
+    font-weight: 900;
+  }
+
+  .event-card-skew {
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 0% 100%);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-100 { animation-delay: 0.15s; }
+  .delay-200 { animation-delay: 0.3s; }
+
+  .btn-tactical {
+    clip-path: polygon(12% 0, 100% 0, 88% 100%, 0% 100%);
+  }
+
+  /* Smooth hover for the title scale effect */
+  h3 {
+    transition: all 0.4s ease;
+  }
+</style>

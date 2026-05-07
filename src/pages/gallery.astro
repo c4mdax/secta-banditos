@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Gallery from '../components/Gallery.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Galería - Secta Banditos">
+  <Navbar />
+  
+  <main class="relative bg-clancy-dark text-clancy-white min-h-screen py-24 px-6 overflow-hidden" transition:name="main-content" transition:animate="slide">
+    
+    <div class="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-clancy-red/10 to-transparent pointer-events-none opacity-40"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <header class="text-center mb-24 reveal">
+        <div class="flex items-center justify-center gap-4 mb-6">
+          <div class="h-[1px] w-8 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+          <span class="text-clancy-red font-black tracking-[0.6em] uppercase text-[10px] md:text-xs">
+            Evidencia Visual
+          </span>
+          <div class="h-[1px] w-8 bg-clancy-red shadow-[0_0_8px_#ff0000]"></div>
+        </div>
+        
+        <h1 class="text-7xl md:text-9xl font-heading leading-none uppercase tracking-tighter">
+          <span class="clancy-title-red">Galería</span>
+        </h1>
+        
+        <p class="mt-8 text-clancy-white/40 uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold max-w-lg mx-auto leading-relaxed">
+          Fragmentos de la lucha • Recuerdos de la Secta • <span class="text-clancy-red">Voldoy</span>
+        </p>
+      </header>
+
+      <section class="reveal delay-200">
+        <div class="relative p-1 md:p-4 border border-clancy-white/5 bg-clancy-white/[0.02]">
+          <div class="absolute -top-2 -left-2 w-10 h-10 border-t-2 border-l-2 border-clancy-red opacity-40"></div>
+          <div class="absolute -bottom-2 -right-2 w-10 h-10 border-b-2 border-r-2 border-clancy-red opacity-40"></div>
+          
+          <Gallery />
+        </div>
+      </section>
+
+      <footer class="mt-32 text-center reveal delay-300">
+        <div class="inline-block p-1 bg-gradient-to-r from-transparent via-clancy-red/30 to-transparent w-full h-[1px] mb-12"></div>
+        <p class="text-clancy-white/60 text-sm md:text-lg font-light tracking-widest uppercase">
+          ¿Tienes material de la última incursión?
+        </p>
+        <p class="text-clancy-red font-black text-xs mt-2 uppercase tracking-[0.2em]">
+          Compártelo en el canal principal para ser archivado.
+        </p>
+      </footer>
+
+    </div>
+
+    <div class="absolute top-1/2 -right-20 hidden lg:block border-r-2 border-clancy-red/10 h-64 pointer-events-none"></div>
+    <div class="absolute top-1/2 -left-20 hidden lg:block border-l-2 border-clancy-red/10 h-64 pointer-events-none"></div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .clancy-title-red {
+    color: #ff0000;
+    transform: scaleY(1.1);
+    display: inline-block;
+    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.4));
+    letter-spacing: -0.05em;
+    font-weight: 900;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.4s; }
+
+  /* Estilo para que el componente Gallery se integre visualmente */
+  :global(.gallery-item) {
+    transition: all 0.5s ease;
+    filter: grayscale(40%) contrast(1.1);
+  }
+
+  :global(.gallery-item:hover) {
+    filter: grayscale(0%) contrast(1.2);
+    transform: scale(1.02);
+  }
+</style>
