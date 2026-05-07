@@ -1,6 +1,15 @@
 ---
 import logo from "../assets/bitmap-without-typo-nb.png";
 import { siteConfig } from "../data/siteConfig";
+
+// Centralizamos los links para no repetir código
+const navLinks = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Sobre Nosotros', href: '/about' },
+  { label: 'Eventos', href: '/meetings' },
+  { label: 'Galería', href: '/gallery' },
+  { label: 'Fan Merch', href: '/merch' }
+];
 ---
 
 <header class="sticky top-0 z-50 bg-clancy-dark/95 backdrop-blur-md border-b border-clancy-red/40 selection:bg-clancy-red selection:text-white shadow-2xl">
@@ -12,7 +21,7 @@ import { siteConfig } from "../data/siteConfig";
           <img
             src={logo.src}
             alt={`${siteConfig.siteName} Logo`}
-            class="w-15 h-15 object-contain transition-all duration-500 -translate-y-[1.5px] -translate-x-[0px] group-hover:scale-110 filter brightness-110 group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]"
+            class="w-15 h-15 object-contain transition-all duration-500 -translate-y-[1.5px] group-hover:scale-110 filter brightness-110 group-hover:drop-shadow-[0_0_8px_rgba(255,0,0,0.8)]"
           />
         </div>
         
@@ -28,13 +37,7 @@ import { siteConfig } from "../data/siteConfig";
     </div>
 
     <nav class="hidden md:flex items-center gap-6">
-      {[
-        { label: 'Inicio', href: '/' },
-        { label: 'Sobre Nosotros', href: '/about' },
-        { label: 'Eventos', href: '/meetings' },
-        { label: 'Galería', href: '/gallery' },
-        { label: 'Fan Merch', href: '/merch' }
-      ].map((item) => (
+      {navLinks.map((item) => (
         <a 
           href={item.href} 
           class="text-[10px] font-black uppercase tracking-[0.2em] text-clancy-white/70 hover:text-clancy-red transition-all duration-300 relative group"
@@ -48,12 +51,13 @@ import { siteConfig } from "../data/siteConfig";
     <div class="flex items-center md:hidden">
       <button
         id="mobile-menu-btn"
-        class="p-2 text-clancy-white hover:bg-clancy-red/20 transition-colors rounded-sm"
+        aria-label="Menu"
+        class="p-2 text-clancy-white hover:bg-clancy-red/20 transition-colors rounded-sm active:scale-90"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="12" x2="21" y2="12" id="line1"></line>
+          <line x1="3" y1="6" x2="21" y2="6" id="line2"></line>
+          <line x1="3" y1="18" x2="21" y2="18" id="line3"></line>
         </svg>
       </button>
     </div>
@@ -61,19 +65,13 @@ import { siteConfig } from "../data/siteConfig";
 
   <div
     id="mobile-menu"
-    class="hidden md:hidden border-t border-clancy-red/20 bg-clancy-dark/98 backdrop-blur-xl transition-all duration-300"
+    class="hidden md:hidden border-t border-clancy-red/20 bg-clancy-dark/98 backdrop-blur-xl"
   >
     <nav class="flex flex-col py-6 px-6 space-y-4">
-      {[
-        { label: 'Inicio', href: '/' },
-        { label: 'Sobre Nosotros', href: '/about' },
-        { label: 'Eventos', href: '/meetings' },
-        { label: 'Galería', href: '/gallery' },
-        { label: 'Fan Merch', href: '/merch' }
-      ].map((item) => (
+      {navLinks.map((item) => (
         <a 
           href={item.href} 
-          class="text-[11px] font-black uppercase tracking-[0.3em] text-clancy-white/80 hover:text-clancy-red py-2 border-b border-white/5"
+          class="mobile-link text-[11px] font-black uppercase tracking-[0.3em] text-clancy-white/80 hover:text-clancy-red py-3 border-b border-white/5 active:pl-2 transition-all"
         >
           {item.label}
         </a>
@@ -83,14 +81,32 @@ import { siteConfig } from "../data/siteConfig";
 </header>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  function initMenu() {
     const menuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = document.querySelectorAll(".mobile-link");
     
     if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener("click", () => {
+      // Limpiar listeners previos (evita duplicados con ViewTransitions)
+      menuBtn.replaceWith(menuBtn.cloneNode(true));
+      const newBtn = document.getElementById("mobile-menu-btn");
+
+      newBtn?.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
       });
+
+      // Cerrar menú al hacer click en un link
+      mobileLinks.forEach(link => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
     }
-  });
+  }
+
+  // Inicializar en la primera carga
+  initMenu();
+
+  // Reinicializar después de cada transición de página de Astro
+  document.addEventListener("astro:after-swap", initMenu);
 </script>

@@ -1,6 +1,15 @@
 ---
 import logo from "../assets/bitmap-without-typo-nb.png";
 import { siteConfig } from "../data/siteConfig";
+
+// Definimos los enlaces con su nombre y su ruta real (endpoint)
+const menuLinks = [
+  { name: 'Inicio', href: '/' },
+  { name: 'Sobre Nosotros', href: '/about' },
+  { name: 'Eventos', href: '/meetings' },
+  { name: 'Galería', href: '/gallery' },
+  { name: 'Merch', href: '/merch' }
+];
 ---
 
 <footer class="relative bg-clancy-dark text-clancy-white pt-20 pb-10 border-t-2 border-clancy-red/40 overflow-hidden selection:bg-clancy-red selection:text-white">
@@ -43,14 +52,14 @@ import { siteConfig } from "../data/siteConfig";
           Mapa
         </h3>
         <ul class="space-y-5">
-          {['Inicio', 'Sobre Nosotros', 'Eventos', 'Galería', 'Merch'].map((item) => (
+          {menuLinks.map((link) => (
             <li>
               <a 
-                href={item === 'Inicio' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`} 
+                href={link.href} 
                 class="text-[11px] uppercase font-black tracking-[0.3em] text-clancy-white/40 hover:text-clancy-red hover:translate-x-2 transition-all duration-300 flex items-center gap-2 group"
               >
                 <span class="w-0 h-[1px] bg-clancy-red group-hover:w-4 transition-all"></span>
-                {item}
+                {link.name}
               </a>
             </li>
           ))}
@@ -70,10 +79,6 @@ import { siteConfig } from "../data/siteConfig";
             </svg>
             <p>México 🇲🇽</p>
           </div>
-          <div class="flex items-center gap-3 pl-2">
-            <span class="w-2 h-2 bg-clancy-red animate-ping"></span>
-            <p class="text-clancy-white/60"></p>
-          </div>
           <div class="h-[1px] w-full bg-gradient-to-r from-clancy-red/50 to-transparent"></div>
         </div>
       </div>
@@ -89,7 +94,6 @@ import { siteConfig } from "../data/siteConfig";
             <span class="w-1.5 h-1.5 bg-clancy-red"></span>
             <span>FAILED PERIMETER ESCAPE</span>
         </div>
-        <span class="text-clancy-red/30 italic hover:text-clancy-red transition-colors"></span>
       </div>
     </div>
   </div>
