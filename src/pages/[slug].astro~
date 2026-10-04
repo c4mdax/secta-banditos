@@ -1,0 +1,93 @@
+---
+// src/pages/merch/[slug].astro
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// 1. Astro requiere esta función para saber cuántas páginas va a generar estáticamente en Vercel
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map(product => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+// 2. Extraemos el producto actual y preparamos su contenido Markdown
+const { product } = Astro.props;
+const { Content } = await product.render();
+---
+
+<Layout title={`${product.data.name} - Secta Banditos`}>
+  <Navbar />
+  
+  <main class="relative bg-clancy-dark text-clancy-white min-h-screen py-32 px-6 overflow-hidden">
+    <div class="fixed inset-0 pointer-events-none z-10 scanlines opacity-10"></div>
+
+    <div class="max-w-6xl mx-auto relative z-20">
+      
+      <!-- Botón de regresar -->
+      <a href="/merch" class="inline-flex items-center gap-2 text-clancy-white/60 hover:text-white uppercase tracking-widest text-[10px] font-bold mb-12 transition-colors">
+        <span class="text-clancy-red">←</span> Volver al catálogo
+      </a>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Imagen grande -->
+        <div class="relative aspect-square border border-white/10 p-4 bg-black/40">
+          <div class="absolute -inset-4 opacity-20 blur-[80px] rounded-full animate-pulse" style={`background-color: ${product.data.color};`}></div>
+          <Image 
+            src={product.data.image} 
+            alt={product.data.name} 
+            class="w-full h-full object-cover relative z-10 border border-white/5" 
+          />
+        </div>
+
+        <!-- Información -->
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <div class="h-px w-12" style={`background-color: ${product.data.color};`}></div>
+            <span class="uppercase font-black tracking-widest text-[10px]" style={`color: ${product.data.color};`}>
+              {product.data.vendor}
+            </span>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-heading uppercase leading-[0.9] mb-6">
+            {product.data.name}
+          </h1>
+
+          <p class="text-3xl text-clancy-red font-bold tracking-widest mb-8">
+            {product.data.price}
+          </p>
+
+          <!-- Renderizamos lo que escribiste en el cuerpo del Markdown -->
+          <div class="prose prose-invert prose-p:text-clancy-white/70 mb-12">
+            <Content />
+          </div>
+
+          <!-- Botón de Comprar que va a Instagram -->
+          <a 
+            href={product.data.link} 
+            target="_blank" 
+            class="inline-block text-center border font-black px-12 py-5 uppercase text-xs tracking-[0.3em] transition-all skew-x-[-12deg] hover:bg-white hover:text-black shadow-[0_0_20px_rgba(0,0,0,0)] hover:shadow-[0_0_20px_var(--btn-color)]"
+            style={`--btn-color: ${product.data.color}; border-color: ${product.data.color}; color: ${product.data.color};`}
+          >
+            <span class="inline-block skew-x-[12deg]">Acordar Compra →</span>
+          </a>
+          <p class="mt-4 text-[10px] text-white/40 uppercase tracking-widest">
+            Serás redirigido a las redes oficiales del creador.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<style>
+  .scanlines { 
+    background: repeating-linear-gradient(to bottom, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.3) 2px, rgba(0, 0, 0, 0.3) 4px); 
+  }
+</style>

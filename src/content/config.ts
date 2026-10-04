@@ -21,7 +21,20 @@ const meetingsCollection = defineCollection({
   }),
 });
 
+const productsCollection = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    name: z.string(),
+    price: z.string(),
+    vendor: z.string(),
+    image: image(), // Astro procesará y optimizará las imágenes automáticamente
+    color: z.string(),
+    link: z.string(),
+  })
+});
+
 export const collections = {
   'gallery': galleryCollection,
   'meetings': meetingsCollection,
+  'products': productsCollection,
 };

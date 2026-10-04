@@ -1,0 +1,41 @@
+{
+  "$ref": "#/definitions/products",
+  "definitions": {
+    "products": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "price",
+        "vendor",
+        "image",
+        "color",
+        "link"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
